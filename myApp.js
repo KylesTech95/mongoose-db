@@ -86,7 +86,7 @@ const findAndUpdate = (personName, done) => {
     return err ? console.log(err) : done(null,updateDocument)
   })
 };
-
+// model.findByIdAndRemove()
 const removeById = (personId, done) => {
   Person.findByIdAndRemove(personId,function(err,removePerson){
    if(err) console.log(err)
@@ -94,11 +94,13 @@ const removeById = (personId, done) => {
   }
   );
 };
-
+// model.reomve()
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-
-  done(null /*, data*/);
+  Person.remove({name:nameToRemove},function(err,nameRemoved){
+    if(err)console.log(err)
+    done(null,nameRemoved)
+  })
 };
 
 const queryChain = (done) => {
